@@ -13,6 +13,12 @@ $(document).on("keydown",function(){
         updateGameSequence();
     }
 })
+$(document).on("click",function(){
+    if(!started){
+        started = true;
+        updateGameSequence();
+    }
+})
 
 function updateGameSequence() {
     userchoosenColor = [];
@@ -35,9 +41,11 @@ $(".btn").on("click",function(event){
 function checkAnswer(currentLevel){
     if(userchoosenColor[currentLevel] != gamePattern[currentLevel]){
         gameover();
-        $("#level-title").text("Game Over! Press Enter key to Restart.");
-        level = 0;
-        started = false;
+        setTimeout(()=>{
+            $("#level-title").text("Game Over! Press Enter key to Restart.");
+            level = 0;
+            started = false;
+        },500);
     }
 
     else if(userchoosenColor.length === gamePattern.length){
